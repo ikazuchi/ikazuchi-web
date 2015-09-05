@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         \Ikazuchi\Console\Commands\Inspire::class,
+        \Ikazuchi\Console\Commands\CreateAdminUser::class
     ];
 
     /**
@@ -24,7 +25,6 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('inspire')
-                 ->hourly();
+
     }
 }
