@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: Ikazuchi
+        psr4_prefix: Ikazuchi
+        src_path: app

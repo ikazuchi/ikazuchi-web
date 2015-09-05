@@ -1,4 +1,9 @@
-/bootstrap/compiled.php
-.env.*.php
-.env.php
+/vendor
+/node_modules
+Homestead.yaml
+Homestead.json
 .env
+/.idea
+/bower_components
+_ide_helper.php
+database.sqlite

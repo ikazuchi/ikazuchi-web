@@ -1,0 +1,23 @@
+{
+    "name" : "ikazuchi-web",
+    "version" : "0.0.0",
+    "authors" : [
+        "awkwardusername <awkwardusername@gmail.com>"
+    ],
+    "keywords": [
+        "platform"
+    ],
+    "main" : "public/index.php",
+    "private": true,
+    "license" : "Proprietary",
+    "ignore" : [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "font-awesome": "~4.4.0"
+    }
+}
