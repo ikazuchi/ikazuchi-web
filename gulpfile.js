@@ -1,5 +1,4 @@
 var elixir = require('laravel-elixir');
-require('laravel-elixir-bower');
 
 /*
  |--------------------------------------------------------------------------
@@ -14,5 +13,4 @@ require('laravel-elixir-bower');
 
 elixir(function (mix) {
  mix.sass('app.scss');
- mix.bower();
 });

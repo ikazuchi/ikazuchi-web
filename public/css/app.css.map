@@ -1,0 +1,1 @@
+{"version":3,"sources":["app.scss"],"names":[],"mappings":"AAE2C;EACzC,0BAA0B,EAD8B","file":"app.css","sourcesContent":["// @import \"node_modules/bootstrap-sass/assets/stylesheets/bootstrap\";\n\n.page-sidebar-closed .page-content-wrapper .page-content {\n  margin-left: 0 !important;\n}\n\n"],"sourceRoot":"/source/"}

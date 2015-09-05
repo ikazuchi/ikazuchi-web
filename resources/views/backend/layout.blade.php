@@ -25,14 +25,14 @@
     <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
     @yield('cssPageLevelPlugin')
             <!-- END PAGE LEVEL PLUGIN STYLES -->
-
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css"/>
     <!-- BEGIN THEME STYLES -->
     <link href="{{ cdn('themes/metronic410/assets/global/css/components.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ cdn('themes/metronic410/assets/global/css/plugins.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ cdn('themes/metronic410/assets/admin/layout/css/layout.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ cdn('themes/metronic410/assets/admin/layout/css/themes/default.css') }}" rel="stylesheet" type="text/css" id="style_color"/>
     <link href="{{ cdn('themes/metronic410/assets/admin/layout/css/custom.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css"/>
+
     <link href="{{ asset('css/vendor.css') }}" rel="stylesheet" type="text/css"/>
     @yield('css')
             <!-- END THEME STYLES -->
@@ -49,7 +49,7 @@
 <!-- DOC: Apply "page-footer-fixed" class to the body element to have fixed footer -->
 <!-- DOC: Apply "page-sidebar-reversed" class to put the sidebar on the right side -->
 <!-- DOC: Apply "page-full-width" class to the body element to have full width page without the sidebar menu -->
-<body class="page-header-fixed page-quick-sidebar-over-content page-sidebar-closed">
+<body class="page-header-fixed page-quick-sidebar-over-content page-full-width">
 <!-- BEGIN HEADER -->
 <div class="page-header navbar navbar-fixed-top">
     <!-- BEGIN HEADER INNER -->
