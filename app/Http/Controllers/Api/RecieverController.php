@@ -18,20 +18,39 @@ class RecieverController extends Controller {
 
         $data = explode('/', $message);
 
-        $device = Device::where('uuid', $data[0])->first();
+        switch($data[0]) {
+            case 'RX':
+                break;
+            case 'TX':
+                break;
+        }
+
+        return $this->rx($request, $data);
+    }
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param                          $data
+     *
+     * @return bool
+     */
+    private function rx(Request $request, $data)
+    {
+        $device = Device::where('uuid', $data[1])->first();
 
         if (!isset($device)) {
             \Log::warning('Failed to log info: ' . $request->get('messsage'), ['REQUEST' => 'DEVICE_NOT_FOUND']);
-            return 0;
+
+            return false;
         }
 
-        $device_timestamp = $data[1];
+        $device_timestamp = $data[2];
 
-        $latitude         = explode(',', $data[2])[0];
-        $longitude        = explode(',', $data[2])[1];
-        $temperature      = $data[3];
-        $humidity         = $data[4];
-        $water_level      = $data[5];
+        $latitude    = explode(',', $data[3])[0];
+        $longitude   = explode(',', $data[3])[1];
+        $temperature = $data[4];
+        $humidity    = $data[5];
+        $water_level = $data[6];
 
         \DB::table('plots')->insert([
             'device_id'        => $device->id,
@@ -47,6 +66,6 @@ class RecieverController extends Controller {
 
         \Log::info('Succeeded logging: ' . $request->get('message'), ['REQUEST' => 'SUCCESS']);
 
-        return 1;
+        return true;
     }
 }

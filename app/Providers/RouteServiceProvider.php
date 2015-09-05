@@ -2,6 +2,7 @@
 
 namespace Ikazuchi\Providers;
 
+use Ikazuchi\Alert;
 use Ikazuchi\Device;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -29,6 +30,7 @@ class RouteServiceProvider extends ServiceProvider
 
         parent::boot($router);
 
+        $router->model('alert', Alert::class);
         $router->model('device', Device::class);
     }
 
