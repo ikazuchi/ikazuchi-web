@@ -11,6 +11,8 @@
 |
 */
 
+use Ikazuchi\Http\Controllers\Api\RecieverController;
+
 Route::get('', function () {
     return view('main.home');
 });
@@ -35,4 +37,8 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 Route::group(['prefix' => 'devices'], function() {
 
+});
+
+Route::group(['prefix' => 'api'], function() {
+    Route::post('callback', 'Api\RecieverController@input');
 });

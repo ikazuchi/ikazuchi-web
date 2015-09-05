@@ -22,6 +22,8 @@ class PlotSeeder extends Seeder {
                 'humidity'         => $gen->randomNumber(2),
                 'water_level'      => $gen->randomFloat(0, 0, 50),
                 'device_timestamp' => Carbon::create()->addHour($i),
+                'latitude'         => '14.553695',
+                'longitude'        => '121.02541',
                 'device_id'        => Device::first()->id
             ]);
         }
