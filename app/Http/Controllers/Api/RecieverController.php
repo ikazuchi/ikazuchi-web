@@ -30,7 +30,13 @@ class RecieverController extends Controller {
                 return $this->tx($request, $data);
         }
 
-        return false;
+        \Log::warning('BAD REQUEST: ' . $request->get('messsage'), ['REQUEST' => 'BAD_REQUEST']);
+
+        $chikkaClient = new ChikkaClient(env('CHIKKA_CLIENT'), env('CHIKKA_SECRET'), env('CHIKKA_SHORTCODE'));
+
+        (new SmsTransporter($chikkaClient, (new Sms('tx-err-' . str_random(), $request->get('mobile_number'), 'No such service!'))))->send();
+
+        return \Response::json(['error', 400]);
 
     }
 
@@ -38,7 +44,7 @@ class RecieverController extends Controller {
     {
         $device = Device::where('uuid', $data[1])->first();
 
-        $chikkaClient = new ChikkaClient(env('CHIKKA_CLIENT'), env('CHIKKA_SECRET'), env('CHIKKA_SHORTCODE'));;
+        $chikkaClient = new ChikkaClient(env('CHIKKA_CLIENT'), env('CHIKKA_SECRET'), env('CHIKKA_SHORTCODE'));
 
         if (!isset($device)) {
             \Log::warning('Failed to log info: ' . $request->get('messsage'), ['REQUEST' => 'DEVICE_NOT_FOUND']);
