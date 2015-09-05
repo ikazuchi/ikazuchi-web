@@ -42,7 +42,7 @@ class RecieverController extends Controller {
 
         $response = $smstransporter->send();
 
-        \Log::info($response);
+        \Log::info(json_encode($response));
 
         return \Response::json(['error'], 400);
 
@@ -63,7 +63,7 @@ class RecieverController extends Controller {
 
             $response = $smstransporter->send();
 
-            \Log::info($response);
+            \Log::info(json_encode($response));
 
             return false;
         }
@@ -79,7 +79,7 @@ class RecieverController extends Controller {
 
         $response = $smstransporter->send();
 
-        \Log::info($response);
+        \Log::info(json_encode($response));
 
 
         return true;
