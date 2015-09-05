@@ -35,10 +35,12 @@ Route::post('password/email', 'Auth\PasswordController@postEmail');
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 
-Route::group(['prefix' => 'devices'], function() {
-
-});
-
 Route::group(['prefix' => 'api'], function() {
     Route::post('callback', 'Api\RecieverController@input');
+
+    Route::group(['prefix' => 'devices'], function() {
+        Route::get('', 'Api\DeviceController@index');
+        Route::get('{device}/query', 'Api\PlotController@query');
+        Route::get('{device}', 'Api\DeviceController@show');
+    });
 });
