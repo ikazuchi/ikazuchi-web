@@ -25,9 +25,11 @@ class RecieverController extends Controller {
 
         switch ($data[0]) {
             case 'RX':
-                return $this->rx($request, $data);
+                $this->rx($request, $data);
+                return \Response::json(['ok']);
             case 'TX':
-                return $this->tx($request, $data);
+                $this->tx($request, $data);
+                return \Response::json(['ok']);
         }
 
         \Log::warning('BAD REQUEST: ' . $request->get('messsage'), ['REQUEST' => 'BAD_REQUEST']);
@@ -36,7 +38,7 @@ class RecieverController extends Controller {
 
         (new SmsTransporter($chikkaClient, (new Sms('tx-err-' . str_random(), $request->get('mobile_number'), 'No such service!'))))->send();
 
-        return \Response::json(['error', 400]);
+        return \Response::json(['error'], 400);
 
     }
 
