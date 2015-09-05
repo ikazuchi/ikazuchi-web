@@ -36,7 +36,13 @@ class RecieverController extends Controller {
 
         $chikkaClient = new ChikkaClient(env('CHIKKA_CLIENT'), env('CHIKKA_SECRET'), env('CHIKKA_SHORTCODE'));
 
-        (new SmsTransporter($chikkaClient, (new Sms('tx-err-' . str_random(), $request->get('mobile_number'), 'No such service!'))))->send();
+        $mes = new Sms('tx-err-' . str_random(), $request->get('mobile_number'), 'No such service!');
+
+        $smstransporter = new SmsTransporter($chikkaClient, $mes);
+
+        $response = $smstransporter->send();
+
+        \Log::info($response);
 
         return \Response::json(['error'], 400);
 
@@ -51,7 +57,13 @@ class RecieverController extends Controller {
         if (!isset($device)) {
             \Log::warning('Failed to log info: ' . $request->get('messsage'), ['REQUEST' => 'DEVICE_NOT_FOUND']);
 
-            (new SmsTransporter($chikkaClient, (new Sms('tx-err-' . str_random(), Client::first()->mobile_number, 'Device was not found!'))))->send();
+            $mes = new Sms('tx-err-' . str_random(), Client::first()->mobile_number, 'Device was not found!');
+
+            $smstransporter = new SmsTransporter($chikkaClient, $mes);
+
+            $response = $smstransporter->send();
+
+            \Log::info($response);
 
             return false;
         }
@@ -61,7 +73,14 @@ class RecieverController extends Controller {
         $message = $device->serial_no . '/' . $plot->device_timestamp->toDateTimeString . '/' .
                    $plot->latitude . ',' . $plot->longitude . '/' . $plot->temperature . '/' . $plot->humidity . '/' . $plot->water_level;
 
-        (new SmsTransporter($chikkaClient, (new Sms('tx-' . str_random(), Client::first()->mobile_number, $message))))->send();
+        $mes = new Sms('tx-' . str_random(), Client::first()->mobile_number, $message);
+
+        $smstransporter = new SmsTransporter($chikkaClient, $mes);
+
+        $response = $smstransporter->send();
+
+        \Log::info($response);
+
 
         return true;
     }
