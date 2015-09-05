@@ -21,8 +21,10 @@ class RecieverController extends Controller {
         $device = Device::where('uuid', $data[0])->first();
 
         if (!isset($device)) {
+            \Log::warning('Failed to log info: ' . $request->get('messsage'), ['REQUEST' => 'DEVICE_NOT_FOUND']);
             return 0;
         }
+
         $device_timestamp = $data[1];
 
         $latitude         = explode(',', $data[2])[0];
@@ -42,6 +44,8 @@ class RecieverController extends Controller {
             'created_at'       => Carbon::now(),
             'updated_at'       => Carbon::now()
         ]);
+
+        \Log::info('Succeeded logging: ' . $request->get('message'), ['REQUEST' => 'SUCCESS']);
 
         return 1;
     }
