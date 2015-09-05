@@ -15,6 +15,7 @@ class CreateClientsTable extends Migration
         Schema::create('clients', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('mobile_number');
             $table->integer('user_id', false, true);
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

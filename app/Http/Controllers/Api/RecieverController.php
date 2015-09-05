@@ -5,8 +5,13 @@ namespace Ikazuchi\Http\Controllers\Api;
 
 
 use Carbon\Carbon;
+use Coreproc\Chikka\ChikkaClient;
+use Coreproc\Chikka\Models\Sms;
+use Coreproc\Chikka\Transporters\SmsTransporter;
+use Ikazuchi\Client;
 use Ikazuchi\Device;
 use Ikazuchi\Http\Controllers\Controller;
+use Ikazuchi\Plot;
 use Illuminate\Http\Request;
 
 class RecieverController extends Controller {
@@ -18,14 +23,39 @@ class RecieverController extends Controller {
 
         $data = explode('/', $message);
 
-        switch($data[0]) {
+        switch ($data[0]) {
             case 'RX':
-                break;
+                return $this->rx($request, $data);
             case 'TX':
-                break;
+                return $this->tx($request, $data);
         }
 
-        return $this->rx($request, $data);
+        return false;
+
+    }
+
+    private function tx(Request $request, $data)
+    {
+        $device = Device::where('uuid', $data[1])->first();
+
+        $chikkaClient = new ChikkaClient(env('CHIKKA_CLIENT'), env('CHIKKA_SECRET'), env('CHIKKA_SHORTCODE'));;
+
+        if (!isset($device)) {
+            \Log::warning('Failed to log info: ' . $request->get('messsage'), ['REQUEST' => 'DEVICE_NOT_FOUND']);
+
+            (new SmsTransporter($chikkaClient, (new Sms('tx-err-' . str_random(), Client::first()->mobile_number, 'Device was not found!'))))->send();
+
+            return false;
+        }
+
+        $plot = Plot::where('device_id', $device->id)->orderBy('device_timestamp', 'desc')->first();
+
+        $message = $device->serial_no . '/' . $plot->device_timestamp->toDateTimeString . '/' .
+                   $plot->latitude . ',' . $plot->longitude . '/' . $plot->temperature . '/' . $plot->humidity . '/' . $plot->water_level;
+
+        (new SmsTransporter($chikkaClient, (new Sms('tx-' . str_random(), Client::first()->mobile_number, $message))))->send();
+
+        return true;
     }
 
     /**
