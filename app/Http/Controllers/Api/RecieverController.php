@@ -119,7 +119,7 @@ class RecieverController extends Controller {
             'device_id'        => $device->id,
             'latitude'         => $latitude,
             'longitude'        => $longitude,
-            'device_timestamp' => Carbon::createFromTimestamp($device_timestamp),
+            'device_timestamp' => Carbon::now(),
             'temperature'      => $temperature,
             'humidity'         => $humidity,
             'water_level'      => $water_level,

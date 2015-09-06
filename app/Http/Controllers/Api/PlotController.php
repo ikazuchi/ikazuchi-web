@@ -42,7 +42,7 @@ class PlotController extends Controller {
                 break;
         }
 
-        return Plot::where('device_timestamp', '>=', $from)->where('device_timestamp', '<=', $to)->where('device_id', $device->id)->get();
+        return Plot::where('device_timestamp', '>=', $from)->where('device_timestamp', '<=', $to)->where('device_id', $device->id)->orderBy('device_timestamp', 'desc')->get();
     }
 
     public function now(Device $device)

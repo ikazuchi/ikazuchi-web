@@ -44,7 +44,7 @@ class AlertController extends Controller {
         $this->validate($request, [
             'threshold' => 'required'
         ]);
-        
+
         $alert->threshold = $request->get('threshold');
         $alert->is_active = $request->get('is_active', true);
         $alert->save();

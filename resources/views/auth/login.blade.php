@@ -1,11 +1,6 @@
 @extends('auth.layout')
 
 @section('css')
-    <style>
-        .login {
-            background-color: #dedede !important;
-        }
-    </style>
 @stop
 
 @section('content')

@@ -44,24 +44,24 @@
     <div class="slide" style="background: url('{{ asset('img/slide1.jpg') }}') center; background-size: cover;">
       <div class="slide-fg">
         <div class="slide-center">
-          <h2>Production.</h2>
-          <p>Conserve our precious resources.</p>
+          <h2>EFFICIENCY</h2>
+          <p>Maximum production throughput by realtime metrics and improved business intelligence</p>
         </div>
       </div>
     </div>
     <div class="slide" style="background: url('{{ asset('img/slide2op1.jpg') }}') center; background-size: cover;">
       <div class="slide-fg">
         <div class="slide-center">
-          <h2>Protection.</h2>
-          <p>Protect home and family.</p>
+          <h2>MOBILITY</h2>
+          <p>Designed for Portability and quick deployment</p>
         </div>
       </div>
     </div>
     <div class="slide" style="background: url('{{ asset('img/server.jpg') }}') center; background-size: cover;">
       <div class="slide-fg">
         <div class="slide-center">
-          <h2>Precision</h2>
-          <p>.</p>
+          <h2>PRECISION</h2>
+          <p>Weather analytics for maximum affordability</p>
         </div>
       </div>
     </div>
