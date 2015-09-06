@@ -41,7 +41,7 @@ class RecieverController extends Controller {
 
         $chikkaClient = new ChikkaClient(env('CHIKKA_CLIENT'), env('CHIKKA_SECRET'), env('CHIKKA_SHORTCODE'));
 
-        $mes = new Sms($this->faker->create()->randomNumber(32), $request->get('mobile_number'), 'No such service!');
+        $mes = new Sms($this->randomNumber(32), $request->get('mobile_number'), 'No such service!');
 
         $smstransporter = new SmsTransporter($chikkaClient, $mes);
 
@@ -62,7 +62,7 @@ class RecieverController extends Controller {
         if (!isset($device)) {
             \Log::warning('Failed to log info: ' . $request->get('messsage'), ['REQUEST' => 'DEVICE_NOT_FOUND']);
 
-            $mes = new Sms($this->faker->create()->randomNumber(32), Client::first()->mobile_number, 'Device was not found!');
+            $mes = new Sms($this->randomNumber(32), Client::first()->mobile_number, 'Device was not found!');
 
             $smstransporter = new SmsTransporter($chikkaClient, $mes);
 
@@ -78,7 +78,7 @@ class RecieverController extends Controller {
         $message = $device->serial_no . '/' . $plot->device_timestamp->toDateTimeString . '/' .
                    $plot->latitude . ',' . $plot->longitude . '/' . $plot->temperature . '/' . $plot->humidity . '/' . $plot->water_level;
 
-        $mes = new Sms($this->faker->create()->randomNumber(32), Client::first()->mobile_number, $message);
+        $mes = new Sms($this->randomNumber(32), Client::first()->mobile_number, $message);
 
         $smstransporter = new SmsTransporter($chikkaClient, $mes);
 
@@ -129,5 +129,15 @@ class RecieverController extends Controller {
         \Log::info('Succeeded logging: ' . $request->get('message'), ['REQUEST' => 'SUCCESS']);
 
         return true;
+    }
+
+    private function randomNumber($length) {
+        $result = '';
+
+        for($i = 0; $i < $length; $i++) {
+            $result .= mt_rand(0, 9);
+        }
+
+        return $result;
     }
 }
