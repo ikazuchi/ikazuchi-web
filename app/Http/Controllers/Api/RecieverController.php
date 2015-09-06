@@ -106,7 +106,7 @@ class RecieverController extends Controller {
             return false;
         }
 
-        $device_timestamp = $data[2];
+        //$device_timestamp = $data[2];
 
         $latitude  = explode(',', $data[3])[0];
         $longitude = explode(',', $data[3])[1];
