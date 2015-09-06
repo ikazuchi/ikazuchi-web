@@ -51,8 +51,8 @@
                         {{--<i class="fa fa-comments"></i>--}}
                       </div>
                       <div class="details">
-                        <div class="desc">Will alert if <strong>temperature</strong> exceeds</div>
                         <div class="number" data-ng-bind="ctrl.alerts[0].threshold + '&#xB0;C'"></div>
+                        <div class="desc">Max Temperature</div>
                       </div>
                       {{--<a class="more" href="javascript:;">--}}
                         {{--View more <i class="m-icon-swapright m-icon-white"></i>--}}
@@ -65,8 +65,8 @@
                         {{--<i class="fa fa-bar-chart-o"></i>--}}
                       </div>
                       <div class="details">
-                        <div class="desc">Will alert if <strong>humidity</strong> exceeds</div>
                         <div class="number" data-ng-bind="ctrl.alerts[1].threshold + '%'"></div>
+                        <div class="desc">Max Humidity</div>
                       </div>
                       {{--<a class="more" href="javascript:;">--}}
                         {{--View more <i class="m-icon-swapright m-icon-white"></i>--}}
@@ -79,8 +79,8 @@
                         {{--<i class="fa fa-shopping-cart"></i>--}}
                       </div>
                       <div class="details">
-                        <div class="desc">Will alert if <strong>water level</strong> exceeds</div>
                         <div class="number" data-ng-bind="ctrl.alerts[2].threshold + ' cm'"></div>
+                        <div class="desc">Max Water Level</div>
                       </div>
                       {{--<a class="more" href="javascript:;">--}}
                         {{--View more <i class="m-icon-swapright m-icon-white"></i>--}}
@@ -136,7 +136,8 @@
                     {{--<i class="fa fa-comments"></i>--}}
                   </div>
                   <div class="details">
-                    <div class="number" data-ng-bind="ctrl.top.temperature + '&#xB0;C'"></div>
+                    <div class="number" data-ng-bind="ctrl.top.temperature.temperature + '&#xB0;C'"></div>
+                    <div class="desc">Temperature</div>
                   </div>
                   {{--<a class="more" href="javascript:;">--}}
                   {{--View more <i class="m-icon-swapright m-icon-white"></i>--}}
@@ -149,7 +150,8 @@
                     {{--<i class="fa fa-bar-chart-o"></i>--}}
                   </div>
                   <div class="details">
-                    <div class="number" data-ng-bind="ctrl.top.humidity + '%'"></div>
+                    <div class="number" data-ng-bind="ctrl.top.humidity.humidity + '%'"></div>
+                    <div class="desc">Humidity</div>
                   </div>
                   {{--<a class="more" href="javascript:;">--}}
                   {{--View more <i class="m-icon-swapright m-icon-white"></i>--}}
@@ -162,7 +164,8 @@
                     {{--<i class="fa fa-shopping-cart"></i>--}}
                   </div>
                   <div class="details">
-                    <div class="number" data-ng-bind="ctrl.top.water_level + ' cm'"></div>
+                    <div class="number" data-ng-bind="ctrl.top.water_level.water_level + ' cm'"></div>
+                    <div class="desc">Water Level</div>
                   </div>
                   {{--<a class="more" href="javascript:;">--}}
                   {{--View more <i class="m-icon-swapright m-icon-white"></i>--}}
