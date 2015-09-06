@@ -56,7 +56,7 @@
     <div class="page-header-inner">
         <!-- BEGIN LOGO -->
         <div class="page-logo">
-            <a href="#">
+            <a href="/">
                 <img src="{{ asset('img/logo.png') }}" alt="logo" class="logo-default" style="margin-top: 6px; height: 35px;">
             </a>
 

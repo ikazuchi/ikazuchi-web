@@ -172,5 +172,20 @@
             };
 
             ctrl.getAllDevices();
+        }])
+        .controller('AlertsCtrl', ['$resource', function($resource) {
+            var ctrl = this;
+
+            var Alerts = $resource('/api/alerts/:deviceId', null, {
+                query: { method: 'GET', isArray: true }
+            });
+
+            var Top = $resource('/api/devices/:deviceId/top', null, {
+                query: {method: 'GET'}
+            });
+
+            ctrl.alerts = Alerts.query();
+
+            ctrl.top = Top.get({ deviceId: 1 });
         }]);
 })();
