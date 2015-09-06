@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Coreproc\Chikka\ChikkaClient;
 use Coreproc\Chikka\Models\Sms;
 use Coreproc\Chikka\Transporters\SmsTransporter;
+use Faker\Factory;
 use Ikazuchi\Client;
 use Ikazuchi\Device;
 use Ikazuchi\Http\Controllers\Controller;
@@ -15,6 +16,10 @@ use Ikazuchi\Plot;
 use Illuminate\Http\Request;
 
 class RecieverController extends Controller {
+    public function __construct() {
+        $this->faker = new Factory();
+    }
+
     public function input(Request $request)
     {
         \Log::info($request->all(), ['REQUEST' => 'CHIKKA']);
@@ -36,7 +41,7 @@ class RecieverController extends Controller {
 
         $chikkaClient = new ChikkaClient(env('CHIKKA_CLIENT'), env('CHIKKA_SECRET'), env('CHIKKA_SHORTCODE'));
 
-        $mes = new Sms('tx-err-' . str_random(25), $request->get('mobile_number'), 'No such service!');
+        $mes = new Sms($this->faker->create()->randomNumber(32), $request->get('mobile_number'), 'No such service!');
 
         $smstransporter = new SmsTransporter($chikkaClient, $mes);
 
@@ -57,7 +62,7 @@ class RecieverController extends Controller {
         if (!isset($device)) {
             \Log::warning('Failed to log info: ' . $request->get('messsage'), ['REQUEST' => 'DEVICE_NOT_FOUND']);
 
-            $mes = new Sms('tx-err-' . str_random(25), Client::first()->mobile_number, 'Device was not found!');
+            $mes = new Sms($this->faker->create()->randomNumber(32), Client::first()->mobile_number, 'Device was not found!');
 
             $smstransporter = new SmsTransporter($chikkaClient, $mes);
 
@@ -73,7 +78,7 @@ class RecieverController extends Controller {
         $message = $device->serial_no . '/' . $plot->device_timestamp->toDateTimeString . '/' .
                    $plot->latitude . ',' . $plot->longitude . '/' . $plot->temperature . '/' . $plot->humidity . '/' . $plot->water_level;
 
-        $mes = new Sms('tx-' . str_random(29), Client::first()->mobile_number, $message);
+        $mes = new Sms($this->faker->create()->randomNumber(32), Client::first()->mobile_number, $message);
 
         $smstransporter = new SmsTransporter($chikkaClient, $mes);
 
