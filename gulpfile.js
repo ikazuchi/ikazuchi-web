@@ -21,8 +21,8 @@ elixir(function (mix) {
         .scripts([
             '../../../node_modules/angular/angular.min.js',
             '../../../node_modules/angular-resource/angular-resource.min.js',
-            '../../../node_modules/d3/d3.min.js',
-            '../../../node_modules/nvd3/build/nv.d3.min.js',
+            '../../../node_modules/Flot/jquery.flot.js',
+            '../../../node_modules/angular-flot/angular-flot.js',
             'dashboard/app.js'
         ], 'public/js/app.js')
     ;
