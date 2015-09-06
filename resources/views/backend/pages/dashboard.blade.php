@@ -98,35 +98,29 @@
           <div class="portlet-body">
             <div class="row">
               <div class="col-md-4">
-                <div class="sparkline-chart">
                   {{--<div class="number" id="sparkline_bar"><canvas width="113" height="55" style="display: inline-block; width: 113px; height: 55px; vertical-align: top;"></canvas></div>--}}
-                  <nvd3 options="ctrl.chartOptions.temperature" data="ctrl.currentDevice.data.periodic"></nvd3>
-                  <a class="title" href="javascript:;">
-                    Temperature <i class="icon-arrow-right"></i>
-                  </a>
-                </div>
+                <flot width="100%" height="150px" dataset="ctrl.chartData['Temperature']"></flot>
+                <a class="title" href="javascript:;">
+                  Temperature <i class="icon-arrow-right"></i>
+                </a>
               </div>
               <div class="margin-bottom-10 visible-sm">
               </div>
               <div class="col-md-4">
-                <div class="sparkline-chart">
                   {{--<div class="number" id="sparkline_bar2"><canvas width="107" height="55" style="display: inline-block; width: 107px; height: 55px; vertical-align: top;"></canvas></div>--}}
-                  <nvd3 options="ctrl.chartOptions.humidity" data="ctrl.currentDevice.data.periodic"></nvd3>
-                  <a class="title" href="javascript:;">
-                    Humidity <i class="icon-arrow-right"></i>
-                  </a>
-                </div>
+                <flot width="100%" height="150px" dataset="ctrl.chartData['Humidity']"></flot>
+                <a class="title" href="javascript:;">
+                  Humidity <i class="icon-arrow-right"></i>
+                </a>
               </div>
               <div class="margin-bottom-10 visible-sm">
               </div>
               <div class="col-md-4">
-                <div class="sparkline-chart">
                   {{--<div class="number" id="sparkline_line"><canvas width="100" height="55" style="display: inline-block; width: 100px; height: 55px; vertical-align: top;"></canvas></div>--}}
-                  <nvd3 options="ctrl.chartOptions.waterLevel" data="ctrl.currentDevice.data.periodic"></nvd3>
-                  <a class="title" href="javascript:;">
-                    Water Level (meters) <i class="icon-arrow-right"></i>
-                  </a>
-                </div>
+                <flot width="100%" height="150px" dataset="ctrl.chartData['Water Level']"></flot>
+                <a class="title" href="javascript:;">
+                  Water Level (meters) <i class="icon-arrow-right"></i>
+                </a>
               </div>
             </div>
           </div>

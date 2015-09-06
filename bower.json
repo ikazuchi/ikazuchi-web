@@ -19,11 +19,12 @@
   ],
   "dependencies": {
     "angular": "~1.4.5",
+    "angular-flot": "~0.0.10",
     "angular-resource": "~1.4.5",
     "d3": "~3.5.6",
+    "Flot": "flot/flot#~0.8.3",
     "font-awesome": "~4.4.0",
     "fullpage.js": "alvarotrigo/fullPage.js#~2.6.9",
-    "moment": "~2.10.6",
-    "nvd3": "~1.8.1"
+    "moment": "~2.10.6"
   }
 }
