@@ -49,7 +49,7 @@
 <!-- BEGIN LOGO -->
 <div class="logo">
     <a href="{{ url('/') }}">
-        <img src="{{ asset('img/posible_logo.png') }}" alt="logo" class="logo-default" style="margin-top: 8px; height: 125px;">
+        <img src="{{ asset('img/logo.png') }}" alt="logo" class="logo-default" style="margin-top: 8px; height: 75px;">
     </a>
 </div>
 <!-- END LOGO -->
