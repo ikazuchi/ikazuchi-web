@@ -1,5 +1,5 @@
 var elixir = require('laravel-elixir');
-require('laravel-elixir-bower');
+//require('laravel-elixir-bower');
 
 /*
  |--------------------------------------------------------------------------
@@ -13,6 +13,16 @@ require('laravel-elixir-bower');
  */
 
 elixir(function (mix) {
- mix.sass('app.scss');
- mix.bower();
+    mix
+        .sass('app.scss')
+        .scripts([
+            '../../../node_modules/fullpage.js/jquery.fullPage.min.js',
+            'home/home.js'
+        ], 'public/js/home.js')
+        .scripts([
+            '../../../node_modules/d3/d3.min.js',
+            '../../../node_modules/angular/angular.min.js'
+        ], 'public/js/app.js')
+    ;
+    //mix.bower();
 });

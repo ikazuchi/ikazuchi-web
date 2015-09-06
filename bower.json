@@ -1,23 +1,28 @@
 {
-    "name" : "ikazuchi-web",
-    "version" : "0.0.0",
-    "authors" : [
-        "awkwardusername <awkwardusername@gmail.com>"
-    ],
-    "keywords": [
-        "platform"
-    ],
-    "main" : "public/index.php",
-    "private": true,
-    "license" : "Proprietary",
-    "ignore" : [
-        "**/.*",
-        "node_modules",
-        "bower_components",
-        "test",
-        "tests"
-    ],
-    "dependencies": {
-        "font-awesome": "~4.4.0"
-    }
+  "name": "ikazuchi-web",
+  "version": "0.0.0",
+  "authors": [
+    "awkwardusername <awkwardusername@gmail.com>"
+  ],
+  "keywords": [
+    "platform"
+  ],
+  "main": "public/index.php",
+  "private": true,
+  "license": "Proprietary",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.5",
+    "angular-resource": "~1.4.5",
+    "d3": "~3.5.6",
+    "font-awesome": "~4.4.0",
+    "fullpage.js": "alvarotrigo/fullPage.js#~2.6.9",
+    "nvd3": "~1.8.1"
+  }
 }
