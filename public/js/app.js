@@ -3774,7 +3774,13 @@ angular.module('angular-flot', []).directive('flot', function () {
                 query: { method: 'GET', isArray: true }
             });
 
+            var Top = $resource('/api/devices/:deviceId/top', null, {
+                query: {method: 'GET'}
+            });
+
             ctrl.alerts = Alerts.query();
+
+            ctrl.top = Top.get({ deviceId: 1 });
         }]);
 })();
 
