@@ -80,3 +80,15 @@ if (!function_exists('metronic_menu')) {
     }
 
 }
+
+if(!function_exists('randomNumber')) {
+    function randomNumber($length) {
+        $result = '';
+
+        for($i = 0; $i < $length; $i++) {
+            $result .= mt_rand(0, 9);
+        }
+
+        return $result;
+    }
+}

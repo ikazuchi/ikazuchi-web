@@ -11,12 +11,14 @@ use Coreproc\Chikka\Transporters\SmsTransporter;
 use Faker\Factory;
 use Ikazuchi\Client;
 use Ikazuchi\Device;
+use Ikazuchi\Events\ReceievedDataFromDevice;
 use Ikazuchi\Http\Controllers\Controller;
 use Ikazuchi\Plot;
 use Illuminate\Http\Request;
 
 class RecieverController extends Controller {
-    public function __construct() {
+    public function __construct()
+    {
         $this->faker = new Factory();
     }
 
@@ -30,18 +32,16 @@ class RecieverController extends Controller {
 
         switch ($data[0]) {
             case 'RX':
-                $this->rx($request, $data);
-                return \Response::json(['ok']);
+                return $this->rx($request, $data) ? \Response::json(['ok']) : \Response::json(['error'], 400);
             case 'TX':
-                $this->tx($request, $data);
-                return \Response::json(['ok']);
+                return $this->tx($request, $data) ? \Response::json(['ok']) : \Response::json(['error'], 400);
         }
 
         \Log::warning('BAD REQUEST: ' . $request->get('message'), ['REQUEST' => 'BAD_REQUEST']);
 
         $chikkaClient = new ChikkaClient(env('CHIKKA_CLIENT'), env('CHIKKA_SECRET'), env('CHIKKA_SHORTCODE'));
 
-        $mes = new Sms($this->randomNumber(32), $request->get('mobile_number'), 'No such service!');
+        $mes = new Sms(randomNumber(32), $request->get('mobile_number'), 'No such service!');
 
         $smstransporter = new SmsTransporter($chikkaClient, $mes);
 
@@ -55,14 +55,14 @@ class RecieverController extends Controller {
 
     private function tx(Request $request, $data)
     {
-        $device = Device::where('uuid', $data[1])->first();
+        $device = Device::where('serial_no', $data[1])->first();
 
         $chikkaClient = new ChikkaClient(env('CHIKKA_CLIENT'), env('CHIKKA_SECRET'), env('CHIKKA_SHORTCODE'));
 
         if (!isset($device)) {
             \Log::warning('Failed to log info: ' . $request->get('messsage'), ['REQUEST' => 'DEVICE_NOT_FOUND']);
 
-            $mes = new Sms($this->randomNumber(32), Client::first()->mobile_number, 'Device was not found!');
+            $mes = new Sms(randomNumber(32), Client::first()->mobile_number, 'Device was not found!');
 
             $smstransporter = new SmsTransporter($chikkaClient, $mes);
 
@@ -78,7 +78,7 @@ class RecieverController extends Controller {
         $message = $device->serial_no . '/' . $plot->device_timestamp->toDateTimeString() . '/' .
                    $plot->latitude . ',' . $plot->longitude . '/' . $plot->temperature . '/' . $plot->humidity . '/' . $plot->water_level;
 
-        $mes = new Sms($this->randomNumber(32), Client::first()->mobile_number, $message);
+        $mes = new Sms(randomNumber(32), Client::first()->mobile_number, $message);
 
         $smstransporter = new SmsTransporter($chikkaClient, $mes);
 
@@ -108,8 +108,9 @@ class RecieverController extends Controller {
 
         $device_timestamp = $data[2];
 
-        $latitude    = explode(',', $data[3])[0];
-        $longitude   = explode(',', $data[3])[1];
+        $latitude  = explode(',', $data[3])[0];
+        $longitude = explode(',', $data[3])[1];
+
         $temperature = $data[4];
         $humidity    = $data[5];
         $water_level = $data[6];
@@ -126,18 +127,15 @@ class RecieverController extends Controller {
             'updated_at'       => Carbon::now()
         ]);
 
+        event(new ReceievedDataFromDevice([
+            'serial_no'   => $device->serial_no,
+            'temperature' => $temperature,
+            'humidity'    => $humidity,
+            'water_level' => $water_level,
+        ]));
+
         \Log::info('Succeeded logging: ' . $request->get('message'), ['REQUEST' => 'SUCCESS']);
 
         return true;
-    }
-
-    private function randomNumber($length) {
-        $result = '';
-
-        for($i = 0; $i < $length; $i++) {
-            $result .= mt_rand(0, 9);
-        }
-
-        return $result;
     }
 }
