@@ -75,7 +75,7 @@ class RecieverController extends Controller {
 
         $plot = Plot::where('device_id', $device->id)->orderBy('device_timestamp', 'desc')->first();
 
-        $message = $device->serial_no . '/' . $plot->device_timestamp->toDateTimeString . '/' .
+        $message = $device->serial_no . '/' . $plot->device_timestamp->toDateTimeString() . '/' .
                    $plot->latitude . ',' . $plot->longitude . '/' . $plot->temperature . '/' . $plot->humidity . '/' . $plot->water_level;
 
         $mes = new Sms($this->randomNumber(32), Client::first()->mobile_number, $message);
