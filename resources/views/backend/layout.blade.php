@@ -57,7 +57,7 @@
         <!-- BEGIN LOGO -->
         <div class="page-logo">
             <a href="#">
-                <img src="{{ asset('img/posible_logo.png') }}" alt="logo" class="logo-default" style="margin-top: 6px; height: 35px;">
+                <img src="{{ asset('img/logo.png') }}" alt="logo" class="logo-default" style="margin-top: 6px; height: 35px;">
             </a>
 
             <div class="menu-toggler sidebar-toggler hide">

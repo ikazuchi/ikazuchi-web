@@ -39,41 +39,6 @@
 <!-- DOC: Apply "page-sidebar-reversed" class to put the sidebar on the right side -->
 <!-- DOC: Apply "page-full-width" class to the body element to have full width page without the sidebar menu -->
 <body>
-<div class="page-header navbar navbar-fixed-top">
-  <!-- BEGIN HEADER INNER -->
-  <div class="page-header-inner">
-    <!-- BEGIN LOGO -->
-    <div class="page-logo">
-      <a href="#">
-        <img src="{{ asset('img/posible_logo.png') }}" alt="logo" class="logo-default" style="margin-top: 6px; height: 35px;">
-      </a>
-
-      <div class="menu-toggler sidebar-toggler hide">
-        <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
-      </div>
-    </div>
-    <!-- END LOGO -->
-    <!-- BEGIN RESPONSIVE MENU TOGGLER -->
-    <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
-    </a>
-    <!-- END RESPONSIVE MENU TOGGLER -->
-    <!-- BEGIN TOP NAVIGATION MENU -->
-    <div class="top-menu">
-      <ul class="nav navbar-nav pull-right">
-        <!-- BEGIN USER LOGIN DROPDOWN -->
-        <li class="dropdown dropdown-user">
-          <a href="#modal-login" data-toggle="modal" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-            <span class="username username-hide-on-mobile">Login</span>
-            <i class="fa fa-angle-down"></i>
-          </a>
-        </li>
-        <!-- END USER LOGIN DROPDOWN -->
-      </ul>
-    </div>
-    <!-- END TOP NAVIGATION MENU -->
-  </div>
-  <!-- END HEADER INNER -->
-</div>
 <div class="fullpage" id="home-fullPage">
   <div class="section">
     <div class="slide" style="background: url('{{ asset('img/slide1.jpg') }}') center; background-size: cover;">
@@ -92,19 +57,19 @@
         </div>
       </div>
     </div>
-    <div class="slide" style="background: url('{{ asset('img/slide2op2.jpg') }}') center; background-size: cover;">
+    <div class="slide" style="background: url('{{ asset('img/server.jpg') }}') center; background-size: cover;">
       <div class="slide-fg">
         <div class="slide-center">
           <h2>Precision</h2>
-          <p>Subtitle.</p>
+          <p>.</p>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-<div id="modal-login" class="modal">
-
+<img src="{{ asset('img/logo.png') }}" style="position: fixed; top: 25px; left: 25px; height: 60px;">
+<div style="position: fixed; bottom: 25%; left: 0; width: 100%; text-align: center">
+  <a href="/dashboard" class="btn btn-primary btn-lg">Start Now</a>
 </div>
 <!-- END CONTAINER -->
 
