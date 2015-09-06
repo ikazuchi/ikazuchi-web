@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ClientSeeder::class);
         $this->call(DeviceSeeder::class);
         $this->call(PlotSeeder::class);
+        $this->call(AlertSeeder::class);
 
         Model::reguard();
     }

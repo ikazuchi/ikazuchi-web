@@ -52,8 +52,8 @@ Route::group(['prefix' => 'api'], function() {
 
     Route::group(['prefix' => 'alerts'], function() {
         Route::get('', 'Api\AlertController@index');
-        Route::post('', 'Api\AlertController@edit');
-        Route::get('{alert}', 'Api\AlertController@show');
+        Route::post('', 'Api\AlertController@add');
         Route::post('{alert}', 'Api\AlertController@edit');
+        Route::get('{alert}', 'Api\AlertController@show');
     });
 });

@@ -13,8 +13,10 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'Ikazuchi\Events\SomeEvent' => [
-            'Ikazuchi\Listeners\EventListener',
+        'Ikazuchi\Events\ReceievedDataFromDevice' => [
+            'Ikazuchi\Listeners\TemperatureThresholdAlerter',
+            'Ikazuchi\Listeners\HumidityThresholdAlerter',
+            'Ikazuchi\Listeners\WaterLevelThresholdAlerter',
         ],
     ];
 
