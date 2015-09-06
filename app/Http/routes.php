@@ -37,6 +37,7 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('dashboard', 'Backend\DashboardController@index');
+    Route::get('alerts', 'Backend\DashboardController@alerts');
 });
 
 Route::group(['prefix' => 'api'], function() {

@@ -3766,6 +3766,15 @@ angular.module('angular-flot', []).directive('flot', function () {
             };
 
             ctrl.getAllDevices();
+        }])
+        .controller('AlertsCtrl', ['$resource', function($resource) {
+            var ctrl = this;
+
+            var Alerts = $resource('/api/alerts/:deviceId', null, {
+                query: { method: 'GET', isArray: true }
+            });
+
+            ctrl.alerts = Alerts.query();
         }]);
 })();
 
